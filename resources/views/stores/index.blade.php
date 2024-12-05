@@ -21,9 +21,11 @@
                     <x-card.content>
                         {{ Str::limit($store->description, 50) }}
                     </x-card.content>
-                    @if (auth()->user()->id === $store->user_id)
-                        <a href="{{ route('stores.edit', $store) }}" class="text-blue-500 hover:underline">Edit</a>
-                    @endif
+                    @auth
+                        @if (auth()->user()->id === $store->user_id)
+                            <a href="{{ route('stores.edit', $store) }}" class="text-blue-500 hover:underline">Edit</a>
+                        @endif
+                    @endauth
                 </x-card>
             @endforeach
         </div>
